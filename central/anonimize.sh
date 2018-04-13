@@ -21,6 +21,7 @@ echo ">>> Creating dump"
 mysqldump -uroot -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE | gzip > ${TARGET_FILE_FOLDER}/${TARGET_FILE_NAME}
 
 echo ">>> Changing owner of dump file"
+echo "chown $FINAL_FILE_OWNER ${TARGET_FILE_FOLDER}/${TARGET_FILE_NAME}"
 chown $FINAL_FILE_OWNER ${TARGET_FILE_FOLDER}/${TARGET_FILE_NAME}
 
 echo ">>> Done!"
