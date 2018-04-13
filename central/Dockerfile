@@ -1,14 +1,13 @@
 FROM mysql:5.6
 
-COPY ["docker-entrypoint.sh", "/usr/local/bin/"]
-
-ENV ORIGIN_FILE_PATH=/central.sql.gz \
+ENV ORIGIN_FILE_PATH=/original_dump.gz \
     TARGET_FILE_FOLDER=/output \
-    TARGET_FILE_NAME=central_anonymized.sql.gz \
+    TARGET_FILE_NAME=anonymized_dump.sql.gz \
     FINAL_FILE_OWNER=mysql \
-    CLIENT=\
+    DB_NAME=\
     MYSQL_ROOT_PASSWORD=password
 
 COPY ["script_anonimizar.sql", "anonimize.sh", "/"]
 
-CMD ["mysqld", "--character-set-server=utf8", "--collation-server=utf8_unicode_ci", "--max-allowed-packet=128M"]
+ENTRYPOINT []
+CMD ["/anonimize.sh"]
